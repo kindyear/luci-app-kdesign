@@ -1,0 +1,20 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "KDesign theme"
+msgstr ""
+
+msgid "Customize the KDesign identity and login appearance. Changes take effect after the page is reloaded."
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Brand"
+msgstr ""
+
+msgid "Login page"
+msgstr ""
+
+msgid "Layout"
+msgstr ""

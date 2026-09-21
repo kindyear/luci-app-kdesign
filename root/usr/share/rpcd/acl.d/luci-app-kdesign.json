@@ -1,0 +1,11 @@
+{
+	"luci-app-kdesign": {
+		"description": "Grant access to KDesign theme settings",
+		"read": {
+			"uci": [ "kdesign" ]
+		},
+		"write": {
+			"uci": [ "kdesign" ]
+		}
+	}
+}

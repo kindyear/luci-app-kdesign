@@ -1,0 +1,5 @@
+config theme 'theme'
+	option brand_name 'KDesign'
+	option login_subtitle 'LuCI / KDesign'
+	option login_overlay '0'
+	option sidebar_collapsed '0'

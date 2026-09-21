@@ -1,0 +1,74 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "KDesign theme"
+msgstr "KDesign 主题"
+
+msgid "Customize the KDesign identity and login appearance. Changes take effect after the page is reloaded."
+msgstr "自定义 KDesign 品牌和登录页外观。重新载入页面后生效。"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "Brand"
+msgstr "品牌"
+
+msgid "Login page"
+msgstr "登录页面"
+
+msgid "Layout"
+msgstr "布局"
+
+msgid "Brand name"
+msgstr "品牌名称"
+
+msgid "Brand subtitle"
+msgstr "品牌副标题"
+
+msgid "Use router hostname"
+msgstr "使用路由器主机名"
+
+msgid "Leave empty to display the router hostname."
+msgstr "留空时显示路由器主机名。"
+
+msgid "Brand logo URL"
+msgstr "品牌 Logo URL"
+
+msgid "Use an absolute web path or an HTTP(S) URL. Leave empty to use the built-in logo."
+msgstr "填写绝对 Web 路径或 HTTP(S) URL；留空使用内置 Logo。"
+
+msgid "Footer text"
+msgstr "页脚文字"
+
+msgid "Leave empty to use the brand name."
+msgstr "留空时使用品牌名称。"
+
+msgid "Login title"
+msgstr "登录页标题"
+
+msgid "Login subtitle"
+msgstr "登录页副标题"
+
+msgid "Background image URL"
+msgstr "背景图片 URL"
+
+msgid "Use an absolute web path or an HTTP(S) URL. Leave empty for the default background."
+msgstr "填写绝对 Web 路径或 HTTP(S) URL；留空使用默认背景。"
+
+msgid "Background color"
+msgstr "背景颜色"
+
+msgid "Image darkening"
+msgstr "图片暗化程度"
+
+msgid "Collapse sidebar by default"
+msgstr "默认折叠侧栏"
+
+msgid "This default is used until a browser explicitly expands or collapses the sidebar."
+msgstr "浏览器首次手动展开或折叠侧栏前使用此默认值。"
+
+msgid "Enter an absolute web path or an HTTP(S) URL."
+msgstr "请输入绝对 Web 路径或 HTTP(S) URL。"
+
+msgid "Enter a six-digit hexadecimal color such as #f7f7f8."
+msgstr "请输入六位十六进制颜色，例如 #f7f7f8。"

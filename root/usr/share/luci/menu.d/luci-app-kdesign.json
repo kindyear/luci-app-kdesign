@@ -1,0 +1,13 @@
+{
+	"admin/system/kdesign": {
+		"title": "KDesign",
+		"order": 95,
+		"action": {
+			"type": "view",
+			"path": "kdesign/settings"
+		},
+		"depends": {
+			"acl": [ "luci-app-kdesign" ]
+		}
+	}
+}

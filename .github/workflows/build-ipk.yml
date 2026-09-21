@@ -1,0 +1,63 @@
+name: Build Kwrt IPK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-ipk:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate package files
+        shell: bash
+        run: |
+          test -s Makefile
+          test -s htdocs/luci-static/resources/view/kdesign/settings.js
+          test -s root/usr/share/luci/menu.d/luci-app-kdesign.json
+          test -s root/usr/share/rpcd/acl.d/luci-app-kdesign.json
+          node --check htdocs/luci-static/resources/view/kdesign/settings.js
+          python3 -m json.tool root/usr/share/luci/menu.d/luci-app-kdesign.json >/dev/null
+          python3 -m json.tool root/usr/share/rpcd/acl.d/luci-app-kdesign.json >/dev/null
+
+      - name: Prepare LuCI feed layout
+        shell: bash
+        run: |
+          feed_root="${RUNNER_TEMP}/kdesign-feed"
+          package_root="${feed_root}/luci-app-kdesign"
+          mkdir -p "${package_root}"
+          git archive --format=tar HEAD -- Makefile LICENSE htdocs po root | tar -xf - -C "${package_root}"
+          sed -i 's#include ../../luci.mk#include ../luci.mk#' "${package_root}/Makefile"
+          curl --fail --silent --show-error --location \
+            https://raw.githubusercontent.com/openwrt/luci/0aa55c7bd2556d96147e1974a0d94976142d724b/luci.mk \
+            --output "${feed_root}/luci.mk"
+
+      - name: Build package with the OpenWrt SDK
+        uses: openwrt/gh-action-sdk@f5813d30eeef3534b58ac7e79c5d8842b6035434
+        env:
+          ARCH: x86_64-24.10.5
+          CONTAINER: docker.io/openwrt/sdk
+          FEED_DIR: ${{ runner.temp }}/kdesign-feed
+          PACKAGES: luci-app-kdesign
+          V: s
+
+      - name: Verify package output
+        shell: bash
+        run: |
+          mapfile -t packages < <(find bin -type f -name 'luci-app-kdesign_*.ipk' -print)
+          test "${#packages[@]}" -eq 1
+          printf 'Built package: %s\n' "${packages[0]}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: luci-app-kdesign-kwrt-x86_64-ipk
+          path: bin/packages/x86_64/action/luci-app-kdesign_*.ipk
+          if-no-files-found: error
+          retention-days: 14
