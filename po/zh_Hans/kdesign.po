@@ -1,8 +1,8 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "KDesign theme"
-msgstr "KDesign 主题"
+msgid "KDesign theme settings"
+msgstr "KDesign主题设置"
 
 msgid "Customize the KDesign identity and login appearance. Changes take effect after the page is reloaded."
 msgstr "自定义 KDesign 品牌和登录页外观。重新载入页面后生效。"
@@ -46,14 +46,95 @@ msgstr "留空时使用品牌名称。"
 msgid "Login title"
 msgstr "登录页标题"
 
+msgid "Log in"
+msgstr "登录"
+
 msgid "Login subtitle"
 msgstr "登录页副标题"
+
+msgid "Background source"
+msgstr "背景来源"
+
+msgid "Built-in background"
+msgstr "内置背景"
+
+msgid "Uploaded image"
+msgstr "上传的图片"
+
+msgid "Custom image URL"
+msgstr "自定义图片 URL"
+
+msgid "Bing daily wallpaper"
+msgstr "Bing 每日壁纸"
 
 msgid "Background image URL"
 msgstr "背景图片 URL"
 
 msgid "Use an absolute web path or an HTTP(S) URL. Leave empty for the default background."
 msgstr "填写绝对 Web 路径或 HTTP(S) URL；留空使用默认背景。"
+
+msgid "Uploaded image path"
+msgstr "已上传图片路径"
+
+msgid "Upload background image"
+msgstr "上传背景图片"
+
+msgid "Choose a JPEG, PNG, WebP, or GIF image up to 5 MiB."
+msgstr "请选择不超过 5 MiB 的 JPEG、PNG、WebP 或 GIF 图片。"
+
+msgid "Choose image…"
+msgstr "选择图片…"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "No image selected."
+msgstr "尚未选择图片。"
+
+msgid "Unsupported image format. Please choose a JPEG, PNG, WebP, or GIF image."
+msgstr "不支持此图片格式，请选择 JPEG、PNG、WebP 或 GIF 图片。"
+
+msgid "The selected image exceeds the 5 MiB size limit."
+msgstr "所选图片超过 5 MiB 大小限制。"
+
+msgid "%s · %1024mB"
+msgstr "%s · %1024mB"
+
+msgid "Uploading image…"
+msgstr "正在上传图片…"
+
+msgid "The uploaded image failed validation."
+msgstr "上传的图片未通过校验。"
+
+msgid "Image uploaded. Save and apply to use it on the login page."
+msgstr "图片上传成功，保存并应用后即可用于登录页面。"
+
+msgid "Upload failed: %s"
+msgstr "上传失败：%s"
+
+msgid "Upload login background"
+msgstr "上传登录页背景"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Bing wallpaper"
+msgstr "Bing 壁纸"
+
+msgid "Update now"
+msgstr "立即更新"
+
+msgid "The wallpaper is cached locally and refreshed automatically every six hours while Bing mode is enabled."
+msgstr "启用 Bing 模式时，壁纸会缓存在路由器本地并每六小时自动检查更新。"
+
+msgid "Unable to update the Bing wallpaper."
+msgstr "无法更新 Bing 壁纸。"
+
+msgid "Bing wallpaper updated."
+msgstr "Bing 壁纸已更新。"
+
+msgid "Bing wallpaper update failed: %s"
+msgstr "Bing 壁纸更新失败：%s"
 
 msgid "Background color"
 msgstr "背景颜色"

@@ -1,6 +1,6 @@
 {
 	"admin/system/kdesign": {
-		"title": "KDesign",
+		"title": "KDesign theme settings",
 		"order": 95,
 		"action": {
 			"type": "view",

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -eu
+
+source_file='/tmp/kdesign-background-upload'
+target_directory='/www/luci-static/kdesign/custom'
+extension="${1:-}"
+
+case "$extension" in
+	jpg|png|webp|gif) ;;
+	*) echo 'Unsupported image extension.' >&2; exit 2 ;;
+esac
+
+[ -f "$source_file" ] || { echo 'Uploaded image was not found.' >&2; exit 3; }
+size="$(wc -c < "$source_file")"
+[ "$size" -gt 0 ] && [ "$size" -le 5242880 ] || { echo 'Uploaded image must be between 1 byte and 5 MiB.' >&2; exit 4; }
+
+head4="$(dd if="$source_file" bs=1 count=4 2>/dev/null | hexdump -ve '1/1 "%02x"')"
+case "$extension" in
+	jpg) [ "${head4#ffd8}" != "$head4" ] ;;
+	png) [ "$head4" = '89504e47' ] ;;
+	gif) [ "$head4" = '47494638' ] ;;
+	webp)
+		[ "$head4" = '52494646' ] &&
+		[ "$(dd if="$source_file" bs=1 skip=8 count=4 2>/dev/null | hexdump -ve '1/1 "%02x"')" = '57454250' ]
+		;;
+esac || { echo 'Uploaded file contents do not match the selected image format.' >&2; exit 5; }
+
+mkdir -p "$target_directory"
+for old_extension in jpg png webp gif; do
+	[ "$old_extension" = "$extension" ] || rm -f "$target_directory/login-background.$old_extension"
+done
+mv "$source_file" "$target_directory/login-background.$extension"
+chmod 0644 "$target_directory/login-background.$extension"

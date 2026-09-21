@@ -23,7 +23,15 @@ jobs:
           test -s htdocs/luci-static/resources/view/kdesign/settings.js
           test -s root/usr/share/luci/menu.d/luci-app-kdesign.json
           test -s root/usr/share/rpcd/acl.d/luci-app-kdesign.json
+          test -x root/usr/libexec/kdesign-background-install
+          test -x root/usr/libexec/kdesign-bing-update
+          test -x root/usr/libexec/kdesign-bing-daemon
+          test -x root/etc/init.d/kdesign-bing
           node --check htdocs/luci-static/resources/view/kdesign/settings.js
+          sh -n root/usr/libexec/kdesign-background-install
+          sh -n root/usr/libexec/kdesign-bing-update
+          sh -n root/usr/libexec/kdesign-bing-daemon
+          sh -n root/etc/init.d/kdesign-bing
           python3 -m json.tool root/usr/share/luci/menu.d/luci-app-kdesign.json >/dev/null
           python3 -m json.tool root/usr/share/rpcd/acl.d/luci-app-kdesign.json >/dev/null
 
@@ -45,19 +53,24 @@ jobs:
           ARCH: x86_64-24.10.5
           CONTAINER: docker.io/openwrt/sdk
           FEED_DIR: ${{ runner.temp }}/kdesign-feed
-          PACKAGES: luci-app-kdesign
+          PACKAGES: luci-app-kdesign luci-i18n-kdesign-zh-cn
           V: s
 
       - name: Verify package output
         shell: bash
         run: |
-          mapfile -t packages < <(find bin -type f -name 'luci-app-kdesign_*.ipk' -print)
-          test "${#packages[@]}" -eq 1
-          printf 'Built package: %s\n' "${packages[0]}"
+          mapfile -t app_packages < <(find bin -type f -name 'luci-app-kdesign_*.ipk' -print)
+          mapfile -t i18n_packages < <(find bin -type f -name 'luci-i18n-kdesign-zh-cn_*.ipk' -print)
+          test "${#app_packages[@]}" -eq 1
+          test "${#i18n_packages[@]}" -eq 1
+          printf 'Built package: %s\n' "${app_packages[0]}"
+          printf 'Built translation: %s\n' "${i18n_packages[0]}"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: luci-app-kdesign-kwrt-x86_64-ipk
-          path: bin/packages/x86_64/action/luci-app-kdesign_*.ipk
+          name: luci-app-kdesign-kwrt-x86_64-ipks
+          path: |
+            bin/packages/x86_64/action/luci-app-kdesign_*.ipk
+            bin/packages/x86_64/action/luci-i18n-kdesign-zh-cn_*.ipk
           if-no-files-found: error
           retention-days: 14

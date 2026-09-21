@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -eu
+
+target_directory='/www/luci-static/kdesign/custom'
+target_file="$target_directory/bing.jpg"
+metadata_file='/tmp/kdesign-bing.json'
+download_file='/tmp/kdesign-bing.jpg'
+now="$(date +%s)"
+
+if [ "${1:-}" != '--force' ] && [ -s "$target_file" ]; then
+	modified="$(stat -c %Y "$target_file" 2>/dev/null || echo 0)"
+	[ $((now - modified)) -lt 21600 ] && exit 0
+fi
+
+trap 'rm -f "$metadata_file" "$download_file"' EXIT
+uclient-fetch -q -O "$metadata_file" 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN'
+image_path="$(jsonfilter -i "$metadata_file" -e '@.images[0].url')"
+case "$image_path" in
+	/th\?id=*.jpg*) ;;
+	*) echo 'Bing returned an unexpected image URL.' >&2; exit 2 ;;
+esac
+
+uclient-fetch -q -O "$download_file" "https://www.bing.com$image_path"
+size="$(wc -c < "$download_file")"
+[ "$size" -ge 1024 ] && [ "$size" -le 10485760 ] || { echo 'Bing image size is invalid.' >&2; exit 3; }
+[ "$(dd if="$download_file" bs=1 count=2 2>/dev/null | hexdump -ve '1/1 "%02x"')" = 'ffd8' ] || { echo 'Bing response is not a JPEG image.' >&2; exit 4; }
+
+mkdir -p "$target_directory"
+mv "$download_file" "$target_file"
+chmod 0644 "$target_file"

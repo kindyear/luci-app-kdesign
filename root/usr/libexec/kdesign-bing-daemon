@@ -1,0 +1,8 @@
+#!/bin/sh
+
+while true; do
+	if [ "$(uci -q get kdesign.theme.background_source)" = 'bing' ]; then
+		/usr/libexec/kdesign-bing-update >/dev/null 2>&1 || logger -t kdesign 'Unable to refresh Bing wallpaper'
+	fi
+	sleep 300
+done

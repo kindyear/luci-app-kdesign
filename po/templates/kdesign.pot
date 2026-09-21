@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-msgid "KDesign theme"
+msgid "KDesign theme settings"
 msgstr ""
 
 msgid "Customize the KDesign identity and login appearance. Changes take effect after the page is reloaded."
@@ -17,4 +17,139 @@ msgid "Login page"
 msgstr ""
 
 msgid "Layout"
+msgstr ""
+
+msgid "Brand name"
+msgstr ""
+
+msgid "Brand subtitle"
+msgstr ""
+
+msgid "Use router hostname"
+msgstr ""
+
+msgid "Leave empty to display the router hostname."
+msgstr ""
+
+msgid "Brand logo URL"
+msgstr ""
+
+msgid "Use an absolute web path or an HTTP(S) URL. Leave empty to use the built-in logo."
+msgstr ""
+
+msgid "Footer text"
+msgstr ""
+
+msgid "Leave empty to use the brand name."
+msgstr ""
+
+msgid "Login title"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Login subtitle"
+msgstr ""
+
+msgid "Background source"
+msgstr ""
+
+msgid "Built-in background"
+msgstr ""
+
+msgid "Uploaded image"
+msgstr ""
+
+msgid "Custom image URL"
+msgstr ""
+
+msgid "Bing daily wallpaper"
+msgstr ""
+
+msgid "Background image URL"
+msgstr ""
+
+msgid "Use an absolute web path or an HTTP(S) URL. Leave empty for the default background."
+msgstr ""
+
+msgid "Uploaded image path"
+msgstr ""
+
+msgid "Upload background image"
+msgstr ""
+
+msgid "Choose a JPEG, PNG, WebP, or GIF image up to 5 MiB."
+msgstr ""
+
+msgid "Choose image…"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "No image selected."
+msgstr ""
+
+msgid "Unsupported image format. Please choose a JPEG, PNG, WebP, or GIF image."
+msgstr ""
+
+msgid "The selected image exceeds the 5 MiB size limit."
+msgstr ""
+
+msgid "%s · %1024mB"
+msgstr ""
+
+msgid "Uploading image…"
+msgstr ""
+
+msgid "The uploaded image failed validation."
+msgstr ""
+
+msgid "Image uploaded. Save and apply to use it on the login page."
+msgstr ""
+
+msgid "Upload failed: %s"
+msgstr ""
+
+msgid "Upload login background"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Bing wallpaper"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "The wallpaper is cached locally and refreshed automatically every six hours while Bing mode is enabled."
+msgstr ""
+
+msgid "Unable to update the Bing wallpaper."
+msgstr ""
+
+msgid "Bing wallpaper updated."
+msgstr ""
+
+msgid "Bing wallpaper update failed: %s"
+msgstr ""
+
+msgid "Background color"
+msgstr ""
+
+msgid "Image darkening"
+msgstr ""
+
+msgid "Collapse sidebar by default"
+msgstr ""
+
+msgid "This default is used until a browser explicitly expands or collapses the sidebar."
+msgstr ""
+
+msgid "Enter an absolute web path or an HTTP(S) URL."
+msgstr ""
+
+msgid "Enter a six-digit hexadecimal color such as #f7f7f8."
 msgstr ""

@@ -5,6 +5,15 @@
 			"uci": [ "kdesign" ]
 		},
 		"write": {
+			"cgi-io": [ "upload" ],
+			"file": {
+				"/tmp/kdesign-background-upload": [ "write" ],
+				"/usr/libexec/kdesign-background-install *": [ "exec" ],
+				"/usr/libexec/kdesign-bing-update *": [ "exec" ]
+			},
+			"ubus": {
+				"file": [ "exec" ]
+			},
 			"uci": [ "kdesign" ]
 		}
 	}
