@@ -3,10 +3,15 @@ name: Build Kwrt IPK
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: build-ipk-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-ipk:
@@ -74,3 +79,36 @@ jobs:
             bin/packages/x86_64/action/luci-i18n-kdesign-zh-cn_*.ipk
           if-no-files-found: error
           retention-days: 14
+
+  release:
+    name: Publish GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build-ipk
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Download built packages
+        uses: actions/download-artifact@v4
+        with:
+          name: luci-app-kdesign-kwrt-x86_64-ipks
+          path: release-assets
+
+      - name: Generate checksums
+        shell: bash
+        run: |
+          cd release-assets
+          sha256sum *.ipk > SHA256SUMS
+          cat SHA256SUMS
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            release-assets/*.ipk \
+            release-assets/SHA256SUMS \
+            --verify-tag \
+            --generate-notes \
+            --title "KDesign 主题设置 ${GITHUB_REF_NAME}"
