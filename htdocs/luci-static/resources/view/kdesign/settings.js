@@ -81,6 +81,7 @@ function uploadBackground(targetOption, sectionId) {
 				});
 			}).then(function() {
 				var widget = targetOption.getUIElement(sectionId);
+				targetOption.cfgvalue(sectionId, uploadedPath);
 				if (widget)
 					widget.setValue(uploadedPath);
 				ui.hideModal();
@@ -162,6 +163,12 @@ return view.extend({
 		uploadedBackground.placeholder = BACKGROUND_PUBLIC_DIRECTORY + '/login-background.jpg';
 		uploadedBackground.depends('background_source', 'upload');
 		uploadedBackground.retain = true;
+		uploadedBackground.forcewrite = true;
+		uploadedBackground.formvalue = function(sectionId) {
+			var widget = this.getUIElement(sectionId);
+			var value = widget ? widget.getValue() : null;
+			return value || this.cfgvalue(sectionId);
+		};
 
 		o = s.taboption('login', form.Button, '_upload_background', _('Upload background image'));
 		o.inputstyle = 'action';
