@@ -32,3 +32,5 @@ for old_extension in jpg png webp gif; do
 done
 mv "$source_file" "$target_directory/login-background.$extension"
 chmod 0644 "$target_directory/login-background.$extension"
+uci -q set "kdesign.theme.uploaded_background=/luci-static/kdesign/custom/login-background.$extension?v=$(date +%s)"
+uci -q commit kdesign

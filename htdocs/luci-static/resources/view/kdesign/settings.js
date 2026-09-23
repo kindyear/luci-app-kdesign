@@ -159,7 +159,7 @@ return view.extend({
 
 		var uploadedBackground = s.taboption('login', form.Value, 'uploaded_background', _('Uploaded image path'));
 		uploadedBackground.readonly = true;
-		uploadedBackground.rmempty = false;
+		uploadedBackground.rmempty = true;
 		uploadedBackground.placeholder = BACKGROUND_PUBLIC_DIRECTORY + '/login-background.jpg';
 		uploadedBackground.depends('background_source', 'upload');
 		uploadedBackground.retain = true;
