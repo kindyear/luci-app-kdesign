@@ -174,7 +174,7 @@ return view.extend({
 		o.inputstyle = 'action';
 		o.inputtitle = _('Choose image…');
 		o.depends('background_source', 'upload');
-		o.onclick = function(sectionId) {
+		o.onclick = function(ev, sectionId) {
 			return uploadBackground(uploadedBackground, sectionId);
 		};
 
